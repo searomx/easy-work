@@ -1,0 +1,10 @@
+services:
+  easy-work-api:
+    container_name: container-easy-work-api
+    restart: unless-stopped
+    environment:
+      - NODE_ENV=production
+    build:
+      context: ./
+    ports:
+      - "3000:3000"
