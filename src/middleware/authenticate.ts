@@ -1,5 +1,7 @@
 import { Request, Response, NextFunction } from "express";
 import jwt, { JwtPayload } from "jsonwebtoken";
+import dotenv from "dotenv";
+dotenv.config();
 
 export const authenticate = (
   req: Request,
@@ -12,7 +14,7 @@ export const authenticate = (
   }
 
   try {
-    const decoded = jwt.verify(token, "your-secret-key");
+    const decoded = jwt.verify(token, process.env.JWT_TOKEN as string);
     if (typeof decoded !== "string" && "id" in decoded) {
       res.locals.user = (decoded as JwtPayload).id;
       next();

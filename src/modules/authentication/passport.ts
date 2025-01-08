@@ -2,6 +2,8 @@ import passport from "passport";
 import { Strategy as GoogleStrategy } from "passport-google-oauth20";
 import { PrismaClient } from "@prisma/client";
 import jwt from "jsonwebtoken";
+import dotenv from "dotenv";
+dotenv.config();
 
 const prisma = new PrismaClient();
 
@@ -28,7 +30,7 @@ passport.use(
           });
         }
 
-        const token = jwt.sign({ id: user.id }, "your-secret-key", {
+        const token = jwt.sign({ id: user.id }, process.env.JWT_SECRET as string, {
           expiresIn: "24h",
         });
         return done(null, { user, token });

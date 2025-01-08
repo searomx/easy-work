@@ -35,7 +35,7 @@ const router = Router();
  *               items:
  *                 $ref: '#/components/schemas/Article'
  */
-router.get("/", getArticlesHandler);
+router.get("/", getArticlesHandler as any);
 
 /**
  * @swagger
@@ -58,7 +58,7 @@ router.get("/", getArticlesHandler);
  *             schema:
  *               $ref: '#/components/schemas/Article'
  */
-router.get("/:articleId", validate(articleParamsSchema), getArticleByIdHandler);
+router.get("/:articleId", validate(articleParamsSchema)  as any, getArticleByIdHandler as any);
 
 /**
  * @swagger
@@ -103,8 +103,8 @@ router.get("/:articleId", validate(articleParamsSchema), getArticleByIdHandler);
  */
 router.post(
   "/",
-  [authenticate, authorize(["WRITER"]), validate(createArticleSchema)],
-  createArticleHandler
+  [authenticate as any, authorize(["WRITER"]), validate(createArticleSchema)],
+  createArticleHandler as any
 );
 
 /**
@@ -156,8 +156,8 @@ router.post(
  */
 router.put(
   "/:articleId",
-  [authenticate, authorize(["WRITER"]), validate(updateArticleSchema)],
-  updateArticleHandler
+  [authenticate as any, authorize(["WRITER"]), validate(updateArticleSchema)],
+  updateArticleHandler as any
 );
 
 /**
@@ -199,8 +199,8 @@ router.put(
  */
 router.delete(
   "/:articleId",
-  [authenticate, authorize(["WRITER"]), validate(articleParamsSchema)],
-  deleteArticleHandler
+  [authenticate as any, authorize(["WRITER"]), validate(articleParamsSchema)],
+  deleteArticleHandler as any
 );
 
 export default router;

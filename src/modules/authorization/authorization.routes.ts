@@ -46,7 +46,7 @@ const router = Router();
  *             schema:
  *               $ref: '#/components/schemas/Unauthorized'
  */
-router.post("/request-writer", [authenticate], requestWriterRole);
+router.post("/request-writer", [authenticate as any], requestWriterRole);
 
 /**
  * @swagger
@@ -81,7 +81,7 @@ router.post("/request-writer", [authenticate], requestWriterRole);
  */
 router.get(
   "/role-requests",
-  [authenticate, authorize(["ADMIN"])],
+  [authenticate as any, authorize(["ADMIN"])],
   viewRoleRequests
 );
 
@@ -135,8 +135,12 @@ router.get(
  */
 router.post(
   "/role-requests/:id",
-  [authenticate, authorize(["ADMIN"]), validate(updateRoleRequestSchema)],
-  updateRoleRequest
+  [
+    authenticate as any,
+    authorize(["ADMIN"]),
+    validate(updateRoleRequestSchema),
+  ],
+  updateRoleRequest as any
 );
 
 export default router;
