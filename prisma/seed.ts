@@ -4,7 +4,7 @@ import bcrypt from "bcrypt";
 const prisma = new PrismaClient();
 
 async function main() {
-  const hashedPassword = await bcrypt.hash("admin@123", 10);
+  const hashedPassword = await bcrypt.hash("admin123", 10);
 
   await prisma.user.upsert({
     where: { email: "admin@b4tech.tech.br" },
@@ -17,59 +17,59 @@ async function main() {
     },
   });
 
-  //   const writer1 = await prisma.user.upsert({
-  //     where: { email: "writer1@example.com" },
-  //     update: {},
-  //     create: {
-  //       email: "writer1@example.com",
-  //       username: "writer1",
-  //       password: await bcrypt.hash("writer1password", 10),
-  //       role: "WRITER",
-  //     },
-  //   });
+  const writer1 = await prisma.user.upsert({
+    where: { email: "tania@gmail.com" },
+    update: {},
+    create: {
+      email: "tania@gmail.com",
+      username: "tania",
+      password: await bcrypt.hash("tania123", 10),
+      role: "WRITER",
+    },
+  });
 
-  //   const writer2 = await prisma.user.upsert({
-  //     where: { email: "writer2@example.com" },
-  //     update: {},
-  //     create: {
-  //       email: "writer2@example.com",
-  //       username: "writer2",
-  //       password: await bcrypt.hash("writer2password", 10),
-  //       role: "WRITER",
-  //     },
-  //   });
+  const writer2 = await prisma.user.upsert({
+    where: { email: "guto@gmail.com" },
+    update: {},
+    create: {
+      email: "guto@gmail.com",
+      username: "Guto",
+      password: await bcrypt.hash("guto123", 10),
+      role: "WRITER",
+    },
+  });
 
-  //   await prisma.article.createMany({
-  //     data: [
-  //       {
-  //         title: "Article 1 by Writer 1",
-  //         content: "This is the content of Article 1 by Writer 1",
-  //         authorId: writer1.id,
-  //       },
-  //       {
-  //         title: "Article 2 by Writer 1",
-  //         content: "This is the content of Article 2 by Writer 1",
-  //         authorId: writer1.id,
-  //       },
-  //     ],
-  //   });
+  await prisma.article.createMany({
+    data: [
+      {
+        title: "Artigo 1 escrito por Tania",
+        content: "This is the content of Article 1 by Tania.",
+        authorId: writer1.id,
+      },
+      {
+        title: "Artigo 2 escrito por Tania",
+        content: "This is the content of Article 2 by Tania",
+        authorId: writer1.id,
+      },
+    ],
+  });
 
-  //   await prisma.article.createMany({
-  //     data: [
-  //       {
-  //         title: "Article 1 by Writer 2",
-  //         content: "This is the content of Article 1 by Writer 2",
-  //         authorId: writer2.id,
-  //       },
-  //       {
-  //         title: "Article 2 by Writer 2",
-  //         content: "This is the content of Article 2 by Writer 2",
-  //         authorId: writer2.id,
-  //       },
-  //     ],
-  //   });
+  await prisma.article.createMany({
+    data: [
+      {
+        title: "Artigo 1 escrito por Guto",
+        content: "This is the content of Article 1 by Guto",
+        authorId: writer2.id,
+      },
+      {
+        title: "Artigo 1 escrito por Guto",
+        content: "This is the content of Article 2 by Guto",
+        authorId: writer2.id,
+      },
+    ],
+  });
 
-  //   console.log("Users and articles seeded");
+  console.log("Users and articles seeded");
 }
 
 main()

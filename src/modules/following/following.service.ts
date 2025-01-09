@@ -90,7 +90,7 @@ export async function followUser(userId: number, followUserId: number) {
       },
     });
   } catch (error) {
-    throw new Error("User already followed");
+    throw new Error("Usuário já seguido");
   }
 }
 
@@ -105,6 +105,6 @@ export async function unfollowUser(userId: number, unfollowUserId: number) {
       },
     });
   } catch (error) {
-    throw new Error("User not followed");
+    throw new Error("Usuário não seguido");
   }
 }

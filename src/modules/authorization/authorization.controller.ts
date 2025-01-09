@@ -11,7 +11,9 @@ export async function requestWriterRole(req: Request, res: Response) {
   const userId = res.locals.user;
   try {
     await requestRoleChange(userId, "WRITER");
-    res.status(200).send({ message: "Request to become a writer submitted" });
+    res
+      .status(200)
+      .send({ message: "Pedido para se tornar um escritor enviado" });
   } catch (error: any) {
     res.status(400).send({ message: error.message });
   }
@@ -32,13 +34,13 @@ export async function updateRoleRequest(
     {},
     UpdateRoleRequestInput["body"]
   >,
-  res: Response,
+  res: Response
 ) {
   const { id } = req.params;
   const { status } = req.body;
   try {
     await handleRoleRequest(Number(id), status);
-    res.status(200).send({ message: `Role request ${status}` });
+    res.status(200).send({ message: `Função Requerida ${status}` });
   } catch (error: any) {
     res.status(400).send({ message: error.message });
   }

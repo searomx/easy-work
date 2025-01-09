@@ -8,7 +8,7 @@ export async function getArticles() {
 
 export async function createArticle(
   data: { title: string; content: string },
-  userId: number,
+  userId: number
 ) {
   const createdArticle = await prisma.article.create({
     data: {
@@ -17,7 +17,7 @@ export async function createArticle(
     },
   });
   if (!createdArticle) {
-    throw new Error("Article not created");
+    throw new Error("Artigo não criado!");
   }
   return createdArticle;
 }
@@ -29,7 +29,7 @@ export async function getArticleById(articleId: number) {
     },
   });
   if (!article) {
-    throw new Error("Article not found");
+    throw new Error("Artigo não encontrado!");
   }
   return article;
 }
@@ -37,7 +37,7 @@ export async function getArticleById(articleId: number) {
 export async function updateArticle(
   articleId: number,
   data: { title: string; content: string },
-  userId: number,
+  userId: number
 ) {
   const updatedArticle = await prisma.article.update({
     where: {
@@ -50,7 +50,7 @@ export async function updateArticle(
     },
   });
   if (!updatedArticle) {
-    throw new Error("Article not found");
+    throw new Error("Artigo não encontrado!");
   }
   return updatedArticle;
 }
@@ -63,6 +63,6 @@ export async function deleteArticle(articleId: number, userId: number) {
     },
   });
   if (!deletedArticle) {
-    throw new Error("Article not found");
+    throw new Error("Artigo não encontrado!");
   }
 }

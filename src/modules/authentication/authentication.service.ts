@@ -9,7 +9,7 @@ const prisma = new PrismaClient();
 export async function registerUser(
   email: string,
   username: string,
-  password: string,
+  password: string
 ) {
   const hashedPassword = await bcrypt.hash(password, 10);
   const user = await prisma.user.create({
@@ -30,11 +30,13 @@ export async function loginUser(email: string, password: string) {
     !user ||
     !(user.password && (await bcrypt.compare(password, user.password)))
   ) {
-    throw new Error("Invalid credentials");
+    throw new Error("Credenciais Inválidas!");
   }
   return generateToken(user.id);
 }
 
 function generateToken(userId: number) {
-  return jwt.sign({ id: userId }, process.env.JWT_SECRET as string, { expiresIn: "24h" });
+  return jwt.sign({ id: userId }, process.env.JWT_SECRET as string, {
+    expiresIn: "24h",
+  });
 }

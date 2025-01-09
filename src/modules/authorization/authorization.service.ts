@@ -6,7 +6,7 @@ export async function requestRoleChange(userId: number, role: Role) {
   const user = await prisma.user.findUnique({ where: { id: userId } });
 
   if (user?.role === role) {
-    throw new Error(`User is already a ${role}`);
+    throw new Error(`Usuário já é um ${role}`);
   }
 
   await prisma.roleRequest.create({
@@ -24,14 +24,14 @@ export async function getRoleRequests() {
 
 export async function handleRoleRequest(
   requestId: number,
-  status: RoleRequestStatus,
+  status: RoleRequestStatus
 ) {
   const roleRequest = await prisma.roleRequest.findUnique({
     where: { id: requestId },
   });
 
   if (!roleRequest || roleRequest.status !== "PENDING") {
-    throw new Error("Invalid or already processed request");
+    throw new Error("Solicitação inválida ou já processada");
   }
 
   if (status === RoleRequestStatus.ACCEPTED) {

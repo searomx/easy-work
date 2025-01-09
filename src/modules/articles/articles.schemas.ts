@@ -2,24 +2,24 @@ import { z } from "zod";
 
 export const createArticleSchema = z.object({
   body: z.object({
-    title: z.string({ required_error: "Title is required" }),
-    content: z.string({ required_error: "Content is required" }),
+    title: z.string({ required_error: "Titulo Requerido!" }),
+    content: z.string({ required_error: "Conteúdo Requerido!" }),
   }),
 });
 
 export const articleParamsSchema = z.object({
   params: z.object({
-    articleId: z.string({ required_error: "Article ID is required" }),
+    articleId: z.string({ required_error: "ID do Artigo é Requerido!" }),
   }),
 });
 
 export const updateArticleSchema = z.object({
   params: z.object({
-    articleId: z.string({ required_error: "Article ID is required" }),
+    articleId: z.string({ required_error: "ID do Artigo é Requerido!" }),
   }),
   body: z.object({
-    title: z.string({ required_error: "Title is required" }),
-    content: z.string({ required_error: "Content is required" }),
+    title: z.string({ required_error: "Titulo Requerido!" }),
+    content: z.string({ required_error: "Conteúdo Requerido!" }),
   }),
 });
 

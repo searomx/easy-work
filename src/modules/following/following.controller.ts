@@ -40,9 +40,9 @@ export async function followUserHandler(
   const followUserId = Number(req.params.userId);
   try {
     await followUser(userId, followUserId);
-    return res.status(201).json({ message: "User Followed Successfully" });
+    return res.status(201).json({ message: "Usuário seguido com sucesso" });
   } catch (error) {
-    return res.status(400).json({ message: "User already followed" });
+    return res.status(400).json({ message: "Usuário já seguido" });
   }
 }
 
@@ -56,6 +56,6 @@ export async function unfollowUserHandler(
     await unfollowUser(userId, Number(followUserId));
     return res.status(204).json();
   } catch (error) {
-    return res.status(400).json({ message: "User not followed" });
+    return res.status(400).json({ message: "Usuário não seguido" });
   }
 }

@@ -10,7 +10,7 @@ export const authenticate = (
 ) => {
   const token = req.headers.authorization?.split(" ")[1];
   if (!token) {
-    return res.status(401).json({ message: "No token provided" });
+    return res.status(401).json({ message: "Nenhum token fornecido" });
   }
 
   try {
@@ -19,9 +19,9 @@ export const authenticate = (
       res.locals.user = (decoded as JwtPayload).id;
       next();
     } else {
-      res.status(401).json({ message: "Invalid token" });
+      res.status(401).json({ message: "Token Inválido" });
     }
   } catch (error) {
-    res.status(401).json({ message: "Invalid token" });
+    res.status(401).json({ message: "Token Inválido" });
   }
 };

@@ -56,8 +56,8 @@ const router = Router();
  */
 router.get(
   "/feed",
-  [authenticate, validate(followingFeedSchema)],
-  getFeedArticlesHandler
+  [authenticate as unknown as any, validate(followingFeedSchema)],
+  getFeedArticlesHandler as unknown as any
 );
 
 /**
@@ -85,7 +85,11 @@ router.get(
  *             schema:
  *               $ref: '#/components/schemas/Unauthorized'
  */
-router.get("/users", authenticate, getFollowingUsersHandler);
+router.get(
+  "/users",
+  authenticate as unknown as any,
+  getFollowingUsersHandler as unknown as any
+);
 
 /**
  * @swagger
@@ -129,8 +133,11 @@ router.get("/users", authenticate, getFollowingUsersHandler);
  */
 router.post(
   "/:userId/follow",
-  [authenticate, validate(followUserSchema)],
-  followUserHandler
+  [
+    authenticate as unknown as any,
+    validate(followUserSchema) as unknown as any,
+  ],
+  followUserHandler as unknown as any
 );
 
 /**
@@ -166,8 +173,11 @@ router.post(
  */
 router.delete(
   "/:userId/unfollow",
-  [authenticate, validate(followUserSchema)],
-  unfollowUserHandler
+  [
+    authenticate as unknown as any,
+    validate(followUserSchema) as unknown as any,
+  ],
+  unfollowUserHandler as unknown as any
 );
 
 export default router;

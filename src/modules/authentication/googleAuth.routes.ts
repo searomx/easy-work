@@ -21,7 +21,7 @@ router.get(
 );
 
 router.get("/failure", (req, res) => {
-  res.status(401).json({ message: "Google Authentication Failed" });
+  res.status(401).json({ message: "Falha de autenticação no Google" });
 });
 
 export default router;
